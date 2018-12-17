@@ -27,6 +27,7 @@
 福州:FZS
 福州南:FYS
 贵阳:GIW
+贵阳北:GIW
 广州:GZQ
 广州西:GXQ
 哈尔滨:HBB
