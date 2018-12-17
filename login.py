@@ -13,6 +13,7 @@ import requests
 from utils import showqrcode
 
 
+
 class Login12306qrcode(object):
     '''二维码登陆12306, 获取用户cookie,并保存至文件
     setup1: 发送登录请求，用户扫描二维码登录, 获取用户的 uamtk
