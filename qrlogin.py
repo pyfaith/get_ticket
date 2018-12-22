@@ -104,8 +104,8 @@ class QRLogin(object):
         data = res.json()
         if data.get("result_code") == "2":
             print("登录成功")
-            print(res.cookies.get_dict())
-            self.uamtk =res.get_dict().get("uamtk") #获取uamtk
+            # print(res.cookies.get_dict())
+            self.uamtk =res.cookies.get_dict().get("uamtk") #获取uamtk
             return True
         else:
             print("请扫描二维码登录系统：", data.get("result_message"))
@@ -130,10 +130,17 @@ class QRLogin(object):
         # 'result_message': '验证通过',
         # 'username': 'xxx'}
 
-        #保存cookie信息
-        with open("cookie.txt", "rb", encoding="utf-8") as f:
-            f.write(res2.headers["cookie"])
-            f.flush()
+        if res2.json().get("result_code") == 0:
+            #保存cookie信息
+            with open("cookie.txt", "w", encoding="utf-8") as f:
+                print("正在写入本地cookie。。。")
+                f.write(res2.headers.get("Set-Cookie"))
+                # print(res2.cookies.get_dict())
+                # print(res2.headers)
+                # print(res2.text)
+                f.flush()
+                print("写入cookie成功。。。")
+
 
 
 
@@ -155,5 +162,5 @@ class QRLogin(object):
 
 
 if __name__ == '__main__':
-    t= Ticket()
+    t= QRLogin()
     t.main_loop()
